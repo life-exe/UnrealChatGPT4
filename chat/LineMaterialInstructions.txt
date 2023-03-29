@@ -1,0 +1,18 @@
+To generate a line using the Material Editor in Unreal Engine 5, you can create a simple material that uses a combination of nodes to define the line's appearance and properties. Follow these steps:
+
+1. Open Unreal Engine 5 and create a new project or open an existing one.
+2. In the Content Browser, right-click and choose "Material" under the "Create Basic Asset" category. Name your material, for example, "LineMaterial."
+3. Double-click the newly created material to open the Material Editor.
+4. Create a "TextureCoordinate" node by right-clicking in the graph area and searching for "Texture Coordinate." Click on the node to add it to the graph.
+5. Create a "ComponentMask" node by right-clicking and searching for "Component Mask." Connect the "UV" output of the "TextureCoordinate" node to the input of the "ComponentMask" node. In the "ComponentMask" node, enable the "R" channel and disable the "G" channel to use only the U-coordinate of the UV map.
+6. Create a "Scalar Parameter" node by right-clicking and searching for "Scalar Parameter." Name this parameter "LineThickness" and set a default value (e.g., 0.01). This parameter will control the thickness of the line.
+7. Create a "Divide" node by right-clicking and searching for "Divide." Connect the "LineThickness" parameter to the B input of the "Divide" node.
+8. Create a "Frac" node by right-clicking and searching for "Frac." Connect the output of the "ComponentMask" node to the input of the "Frac" node.
+9. Create an "Add" node by right-clicking and searching for "Add." Connect the output of the "Divide" node to the input of the "Add" node.
+10. Create another "Frac" node and connect the output of the "Add" node to the input of the new "Frac" node.
+11. Create a "OneMinus" node by right-clicking and searching for "OneMinus." Connect the output of the second "Frac" node to the input of the "OneMinus" node.
+12. Create a "Multiply" node by right-clicking and searching for "Multiply." Connect the output of the "OneMinus" node to the input of the "Multiply" node. Set the other input of the "Multiply" node to a constant value (e.g., 1.0) to control the opacity of the line.
+13. Connect the output of the "Multiply" node to the "Emissive Color" input of the main Material node.
+14. Save and compile your material by clicking "Apply" and then "Save."
+
+Now you've created a simple line material in Unreal Engine 5. Apply this material to a mesh or a plane in your scene to see the generated line. You can also adjust the "LineThickness" parameter to change the thickness of the line as needed.
